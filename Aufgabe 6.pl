@@ -10,15 +10,15 @@ natSymb(s(X)):- natSymb(X).
 
 %a)
 
-% add(Ergebnis,Summand1,Summand2).
-add(Sum1,o,Sum1):- natSymb(Sum1).                        % n + 0 = n
-add(Sum1,s(Sum2),s(Erg1)):- add(Sum1,Sum2,Erg1).
+% add(Summand1,Summand2,Ergebnis).
+add(X,o,X):- natSymb(X).                        % n + 0 = n
+add(X,s(X2),s(E)):- add(X,X2,E).
 
 
 %b)
 
-% sub(Ergebnis,Summand1,Summand2).
-sub(Sum1,Sum2,Erg1):- add(Sum2,Erg1,Sum1).
+% sub(Summand1,Summand2,Ergebnis).
+sub(X,X2,E):- add(X2,E,X).
 
 %c)
 
@@ -28,6 +28,6 @@ halb(G,H):- add(H,H,G).
 %e)
 
 %multi(Faktor1,Faktor2,Produkt)
-multi(Faktor1,o,o).
-multi(Faktor1,s(Faktor2),Produkt):- multi(Faktor1,Factor2,Kfach) , add(Kfach,Faktor1,Produkt).
+mult(o,X,o):- natSymb(X).
+mult(s(X),X2,P):- mult(X,X2,X1), add(X1,X2,P).
 
