@@ -1,40 +1,66 @@
 % Autor:
 % Datum: 22.04.2017
 
-% Beschreibung aller Vater und Mutter Relationen
+% Beschreibung aller eltern und eltern Relationen
 
-% Pr‰dikate
+% Geschlechter
 mannlich(klausvater). mannlich(klaus). mannlich(hanz). mannlich(michael).
 mannlich(jan). mannlich(tim). mannlich(kai). mannlich(heinz). mannlich(denis).
 weiblich(erdmute). weiblich(gisela). weiblich(gudrun). weiblich(mitz).
-weiblich(peter). weiblich(birgit). weiblich(klausmutter). weiblich(inge).
+weiblich(peter). weiblich(birgit). weiblich(klauseltern). weiblich(inge).
 weiblich(claudia). weiblich(stefanie). weiblich(louise).
 weiblich(silva). weiblich(malina).
 
 % Relationen
-mutter(erdmute,gisela). mutter(erdmute,gudrun).
-mutter(erdmute,mitz). mutter(erdmute,peter).
-mutter(mitz,birgit).
-vater(klausvater,klaus). mutter(klausmutter,klaus).
-vater(klausvater,inge). mutter(klausmutter,inge).
-mutter(inge,claudia). vater(hanz,claudia).
-mutter(claudia,jan). mutter(claudia,tim). mutter(claudia,kai).
-vater(heinz,jan). vater(heinz,tim). vater(heinz,kai).
-vater(klaus,stefanie). mutter(gisela,stefanie).
-vater(michael,denis). mutter(stefanie,denis).
-vater(robert,louise). mutter(stefanie,louise).
-vater(michael,silva).
-mutter(birgit,malina).
+
+% Erdmute
+eltern(erdmute,gisela). eltern(erdmute,gudrun).
+eltern(erdmute,mitz). eltern(erdmute,peter).
+
+% Klaus
+eltern(klausvater,inge). eltern(klausvater,inge).
+
+% Inge
+eltern(inge,claudia). eltern(hanz,claudia).
+eltern(claudia,jan). eltern(claudia,tim). eltern(claudia,kai).
+eltern(heinz,jan). eltern(heinz,tim). eltern(heinz,kai).
+
+
+% Mitz
+eltern(mitz,birgit).
+eltern(birgit,malina).
+
+% Stefanie
+eltern(klaus,stefanie). eltern(gisela,stefanie).
+eltern(michael,denis). eltern(stefanie,denis).
+eltern(robert,louise). eltern(stefanie,louise).
+
+eltern(michael,silva).
 
 % Regeln
-sohn(XSohn,XEltern):- vater(XEltern,XSohn), mannlich(XSohn).
-sohn(XSohn,XEltern):- mutter(XEltern,XSohn), mannlich(XSohn).
+mutter(X,Y):- eltern(X,Y), weiblich(X).
+vater(X,Y):- eltern(X,Y), mannlich(X).
 
-tochter(XTochter,XEltern):- vater(XEltern,XTochter), weiblich(XTochter).
-tochter(XTochter,XEltern):- mutter(XEltern,XTochter), weiblich(XTochter).
+sohn(XSohn,XEltern):- eltern(XEltern,XSohn), mannlich(XSohn).
+sohn(XSohn,XEltern):- eltern(XEltern,XSohn), mannlich(XSohn).
 
-bruder(XBruder,XGeschwister):- sohn(XBruder,XEltern), tochter(XGeschwister,XEltern).
-bruder(XBruder,XGeschwister):- sohn(XBruder,XEltern), sohn(XGeschwister,XEltern).
+tochter(XTochter,XEltern):- eltern(XEltern,XTochter), weiblich(XTochter).
+tochter(XTochter,XEltern):- eltern(XEltern,XTochter), weiblich(XTochter).
 
-schwester(XBruder,XGeschwister):- tochter(XBruder,XEltern), tochter(XGeschwister,XEltern).
-schwester(XBruder,XGeschwister):- tochter(XBruder,XEltern), sohn(XGeschwister,XEltern).
+bruder(XBruder,XGeschwister):- sohn(XBruder,XEltern), eltern(XEltern,XGeschwister), XBruder\==XGeschwister.
+bruder(XBruder,XGeschwister):- sohn(XBruder,XEltern), eltern(XEltern,XGeschwister), XBruder\==XGeschwister.
+
+schwester(XSchwester,XGeschwister):- tochter(XSchwester,XEltern), eltern(XEltern,XGeschwister), XSchwester\==XGeschwister.
+schwester(XSchwester,XGeschwister):- tochter(XSchwester,XEltern), eltern(XEltern,XGeschwister), XSchwester\==XGeschwister.
+
+tante(XTante,YNichte):- weiblich(XTante), schwester(XTante,T), eltern(T,YNichte).
+
+onkel(XTante,YNichte):- mannlich(XTante), schwester(XTante,T), eltern(T,YNichte).
+
+groﬂvater(X,Y):- vater(X,X1), vater(X1,Y).
+groﬂvater(X,Y):- vater(X,X1), mutter(X1,Y).
+
+
+groﬂmutter(X,Y):- mutter(X,X1), vater(X1,Y).
+groﬂmutter(X,Y):- mutter(X,X1), mutter(X1,Y).
+
