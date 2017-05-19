@@ -9,6 +9,5 @@ anz(list(X,Xs),s(N)):- anz(Xs,N).
 
 
 %b)
-präfix(Xs,Xs).
-präfix(list(X,Xs),list(X,Ys)).
+präfix(nil,Xs).
 präfix(list(X,Xs),list(X,Ys)):- präfix(Xs,Ys).
