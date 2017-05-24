@@ -21,8 +21,8 @@ lvong(Xs):- sigma_stern(Xs),
 sigma_stern([]).
 sigma_stern([X|Xs]):- sigma(X),
                       sigma_stern(Xs).
-redrel_plus(Xs,Ys):- redrel(Xs,Ys).
-redrel_plus(Xs,Ys):- redrel(Xs,Hs), redrel_plus(Hs,Ys).
+redrel_plus(Xs,Ys):-  redrel(Xs,Ys).
+redrel_plus(Xs,Ys):-  redrel(Xs,Hs), redrel_plus(Hs,Ys).
 
 redrel(Alphas,Betas):- regel(Ls,Rs),
                        append(Alpha1s,Ls,Hs),
