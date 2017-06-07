@@ -6,6 +6,7 @@ append([X|Xs], Ys, [X|Rs]):- append(Xs,Ys,Rs).
 
 sigma(a).
 sigma(b).
+
 vari(vS).
 start(vS).
 regel([vS],[]).
