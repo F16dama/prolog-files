@@ -9,20 +9,23 @@ z(z0).
 z(z1).
 
 %Alphabet
-sigma(a).
-sigma(b).
+sigma(1).
+sigma(2).
+sigma(3).
 
 %Startzustand
-z0(z0).
+start(z0).
 
 %Endzustand
-e(z0).
+ende(z1).
 
 %Transitionfunktion delta(zakt,Ws,Zneu)
-delta(z0, a, z1).
-delta(z0, b, z1).
-delta(z1, a, z0).
-delta(z1, b, z0).
+delta(z0, 2, z1).
+delta(z1, 2, z0).
+delta(z0, 1, z1).
+delta(z1, 1, z0).
+delta(z0, 3, z1).
+delta(z1, 3, z0).
 
 
 %b)
@@ -36,4 +39,4 @@ delta_stern(S, [], S).
 delta_stern(S, [A|Ws], Sn) :- delta(S, A, D), delta_stern(D, Ws, Sn).
 
 %Prüft ob angegebenes Wort korrekt ist oder nicht
-lvonN(Ws) :- sigma_stern(Ws), z0(S), e(E), delta_stern(S, Ws, E).
+lvonN(Ws) :- sigma_stern(Ws), start(S), ende(E), delta_stern(S, Ws, E).

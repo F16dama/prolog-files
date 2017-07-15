@@ -49,8 +49,6 @@ log(X1,X2,X3):- exp(X1,X3,X2).
 
 
 
-
-
 %exp(X1,s(s(o)), X2):- mult(X1,X1,X2).
 %exp(X1,s(s(s(o))), X3):- mult(X1,X1,X2), mult(X1,X2,X3).
 %exp(X1,s(s(s(s(o)))), X4):- mult(X1,X1,X2), mult(X1,X2,X3), mult(X1,X3,X4).
