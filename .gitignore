@@ -1,4 +1,3 @@
 *.BAK
+
 .gitignore
-.git
-/.project
