@@ -58,6 +58,6 @@ roots([Rb|Xs],Ys):- root(Rb,X), roots(Xs,Yns), append([X],Yns,Ys).
 
 % mirror(Xb,Yb): Yb ist Xb Baum an der Wurzel gespiegelt
 mirror(e,e).
-mirror(n(X,Xlb,Xrb),n(X,X2rb,X2lb)):- mirror(Xlb,X2lb), mirror(Xrb,X2rb).
+mirror(n(X,Xlb,Xrb),n(X,Ylb,Yrb)):- mirror(Xlb,Yrb), mirror(Xrb,Ylb).
 
 
