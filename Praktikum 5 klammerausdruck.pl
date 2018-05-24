@@ -1,7 +1,6 @@
 ﻿% Autor:
 % Datum: 18.06.2017
 
-
 %a)
 
 %Startzustand
@@ -13,43 +12,43 @@ ende(#).
 %Zustände
 z(z0).
 z(z1).
-z(z2).
 
 %Alphabet Sigma
-sigma(0).
-sigma(1).
+sigma('(').
+sigma(')').
+sigma('a').
+sigma('+').
 
 %Alphabet Keller
-keller(0).
-keller(1).
-keller(#).
+keller('(').
+keller('#').
 
 %Transrelationen
-delta(z0, 1, #, z0, [1, #]).
-delta(z0, 1, 0, z0, [1, 0]).
-delta(z0, 1, 1, z0, [1, 1]).
-delta(z0, 0, #, z0, [0, #]).
-delta(z0, 0, 0, z0, [0, 0]).
-delta(z0, 0, 1, z0, [0, 1]).
+delta(z0,'(','#',z0,['(','#']).
+delta(z0,'(','(',z0,['(','(']).
 
-delta(z0, 0, #, z1, [#]).
-delta(z0, 0, 0, z1, [0]).
-delta(z0, 0, 1, z1, [1]).
-delta(z0, 1, #, z1, [#]).
-delta(z0, 1, 0, z1, [0]).
-delta(z0, 1, 1, z1, [1]).
+delta(z0,'+','#',z1,['#']).
+delta(z0,'a','#',z1,['#']).
+delta(z0,'+','(',z1,['(']).
+delta(z0,'a','(',z1,['(']).
 
-delta(z0, nix, #, z2, [#]).
-delta(z0, nix, 0, z2, [0]).
-delta(z0, nix, 1, z2, [1]).
+delta(z1,'+','#',z1,['#']).
+delta(z1,'a','#',z1,['#']).
+delta(z1,'+','(',z1,['(']).
+delta(z1,'a','(',z1,['(']).
 
-delta(z1, nix, #, z2, [#]).
-delta(z1, nix, 0, z2, [0]).
-delta(z1, nix, 1, z2, [1]).
+delta(z1,'(','#',z0,['(','#']).
+delta(z1,'(','(',z0,['(','(']).
 
-delta(z2, 1, 1, z2, []).
-delta(z2, 0, 0, z2, []).
-delta(z2, nix, #, z2, []).
+delta(z1,')','#',z1,[]).
+delta(z1,')','(',z1,[]).
+
+% delta(z0, 1, #, z0, [1, #]).
+% delta(z0, 1, 0, z0, [1, 0]).
+% 
+% delta(z0, nix, #, z2, [#]).
+% delta(z0, nix, 0, z2, [0]).
+% delta(z0, nix, 1, z2, [1]).
 
 % Sigma*
 sigma_stern([]).
