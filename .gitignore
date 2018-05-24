@@ -1,5 +1,8 @@
+
 *.BAK
 .gitignore
 .git
-/.project
+/
+.project
+
 /Aufgaben/
